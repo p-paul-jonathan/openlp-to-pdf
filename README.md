@@ -14,7 +14,8 @@ venv\Scripts\activate        # On Windows
 ```
 
 ### 2. Install Dependencies
-```bash install.sh
+```bash
+./install.sh
 ```
 
 ## 📝 Usage
