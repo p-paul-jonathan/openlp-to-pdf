@@ -14,8 +14,7 @@ venv\Scripts\activate        # On Windows
 ```
 
 ### 2. Install Dependencies
-```bash
-pip install -r requirements.txt
+```bash install.sh
 ```
 
 ## 📝 Usage

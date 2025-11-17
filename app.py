@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 import re
-from weasyprint import HTML
+from playwright.sync_api import sync_playwright
 
 def read_file_from_arg() -> str:
     """
@@ -186,16 +186,27 @@ def insert_into_html(html_output: str, html_file: str = "song.html") -> None:
 
 def html_to_pdf(html_file: str = "song.html", pdf_file: str = "song.pdf"):
     """
+    Converts HTML to PDF using Playwright (Chromium).
     Converts an HTML file to a PDF that visually matches the browser view.
     Each .page <div> becomes a new PDF page automatically (via CSS).
+  
     """
-    html_path = Path(html_file)
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
 
-    if not html_path.exists():
-        raise FileNotFoundError(f"HTML file not found: {html_file}")
+        page.goto(f"file://{Path(html_file).resolve()}")
 
-    # Load the HTML and render to PDF
-    HTML(filename=str(html_path)).write_pdf(pdf_file)
+        page.pdf(
+            path=pdf_file,
+            width="28cm",
+            height="15.75cm",
+            print_background=True,
+            margin={"top": "0cm", "bottom": "0cm", "left": "0cm", "right": "0cm"}
+        )
+
+        browser.close()
+
     print(f"✅ PDF created: {pdf_file}")
 
 def main():
