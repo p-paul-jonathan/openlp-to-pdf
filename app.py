@@ -145,8 +145,8 @@ def html_head_content():
 
           html,
           body {
-            width: 297mm;
-            height: 210mm;
+            width: 280mm;
+            height: 157.5mm;
           }
 
           .page {
@@ -189,7 +189,7 @@ def html_to_pdf(html_file: str = "song.html", pdf_file: str = "song.pdf"):
     Converts HTML to PDF using Playwright (Chromium).
     Converts an HTML file to a PDF that visually matches the browser view.
     Each .page <div> becomes a new PDF page automatically (via CSS).
-  
+
     """
     with sync_playwright() as p:
         browser = p.chromium.launch()
