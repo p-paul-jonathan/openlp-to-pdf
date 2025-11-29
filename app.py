@@ -60,7 +60,7 @@ def format_stanzas_to_html(stanzas: list[str]) -> str:
 
     for stanza in stanzas:
         # Split by lines and strip extra whitespace
-        lines = [line.strip() for line in stanza.splitlines() if line.strip()]
+        lines = [line.strip() for line in stanza.splitlines()]
 
         # Join lines with <br> tags
         stanza_html = "<br>\n".join(lines) + "<br>"
